@@ -15,33 +15,35 @@ function ScrollProgress() {
   return <div className="scroll-progress" style={{ width: `${pct}%` }} aria-hidden="true" />
 }
 
-// Wraps children and fades them in when they scroll into view.
-// Falls back to visible immediately if IntersectionObserver is unavailable,
-// and CSS disables the motion under prefers-reduced-motion.
+function ThemeToggle() {
+  const [dark, setDark] = useState(() => {
+    try { return localStorage.getItem('theme') === 'dark' } catch { return false }
+  })
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light')
+    try { localStorage.setItem('theme', dark ? 'dark' : 'light') } catch {}
+  }, [dark])
+  return (
+    <button className="theme-btn" onClick={() => setDark(d => !d)} aria-label="Toggle dark mode" title="Toggle dark mode">
+      {dark ? '☀' : '◐'}
+    </button>
+  )
+}
+
 export function Reveal({ children, className = '' }) {
   const ref = useRef(null)
   const [seen, setSeen] = useState(false)
-
   useEffect(() => {
     const el = ref.current
     if (!el) return
-    if (!('IntersectionObserver' in window)) {
-      setSeen(true)
-      return
-    }
+    if (!('IntersectionObserver' in window)) { setSeen(true); return }
     const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setSeen(true)
-          io.disconnect()
-        }
-      },
+      ([entry]) => { if (entry.isIntersecting) { setSeen(true); io.disconnect() } },
       { threshold: 0.12, rootMargin: '0px 0px -40px 0px' },
     )
     io.observe(el)
     return () => io.disconnect()
   }, [])
-
   return (
     <div ref={ref} className={`reveal ${seen ? 'in' : ''} ${className}`}>
       {children}
@@ -55,13 +57,13 @@ export function Nav() {
       <ScrollProgress />
       <div className="wrap">
         <a href="#top" className="brand">
-          {profile.name}
-          <span className="dot">.</span>
+          {profile.name}<span className="dot">.</span>
         </a>
         <nav className="nav" aria-label="Primary">
           <a href="#about">about</a>
           <a href="#work">work</a>
           <a href="#toolkit">toolkit</a>
+          <ThemeToggle />
           <a href="#contact" className="cta">Start a project</a>
         </nav>
       </div>
@@ -74,7 +76,6 @@ export function Footer() {
     <footer>
       <div className="wrap">
         <span>{profile.name} — Software Engineer &amp; DevOps</span>
-
       </div>
     </footer>
   )

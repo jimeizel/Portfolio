@@ -7,7 +7,7 @@ export const profile = {
 }
 
 export const status = [
-  { k: 'availability', v: 'freelance & remote', ok: true },
+  { k: 'availability', v: 'freelance & remote', ok: true, meter: 90 },
   { k: 'platform_uptime', v: '99.9%' },
   { k: 'services_in_prod', v: '18 monitored' },
   { k: 'environments', v: 'staging·sandbox·prod' },
@@ -30,21 +30,25 @@ export const work = [
   {
     meta: ['Mobile', 'Full-Stack', 'Cloud Run'],
     title: 'Full-stack web & mobile platform',
+    techs: ['Flutter', 'React', 'FastAPI', 'Supabase / PostgreSQL', 'Firebase', 'Google Cloud Run', 'Stripe', 'Codemagic CI/CD'],
     body: 'Built a Flutter iOS/Android app and a React.js web portal on top of a Python/FastAPI backend — JWT auth, bcrypt, AES-128-CBC field-level encryption for PII, and role-based access control. Integrated Stripe Connect for payments and payouts, Firebase for real-time features, and Supabase (PostgreSQL) as the primary database. Deployed to Google Cloud Run, automated mobile builds with Codemagic CI/CD, and tracked down a production issue where traffic was pinned to a stale revision so new deploys never went live.',
   },
   {
     meta: ['Web', 'Containers'],
     title: 'Online education platform',
+    techs: ['Vue / Quasar', 'Django', 'Wagtail', 'PHP', 'Docker', 'Nginx', 'MySQL'],
     body: 'A multi-service platform for an online English school: a Quasar single-page app, Django and Wagtail backends, and a PHP service — all containerized with Docker behind a shared Nginx reverse proxy with MySQL, running across staging, sandbox, and production environments. Ongoing work includes fixing bugs, implementing new features, and keeping everything stable under active daily use.',
   },
   {
     meta: ['Monitoring', 'Reliability'],
     title: 'Production observability stack',
+    techs: ['Prometheus', 'Grafana', 'Loki', 'Docker', 'Linux / Ubuntu'],
     body: 'End-to-end visibility for a fleet of services: Prometheus metrics, Grafana dashboards, and Loki logs, with endpoint (blackbox) and database exporters. Outages get caught early, deploys are verifiable, and "is it down?" has an answer that isn\'t a guess.',
   },
   {
     meta: ['Platform', 'Security'],
     title: 'Server hardening & access control',
+    techs: ['Linux / Ubuntu', 'Nginx', 'Fail2ban', 'Bash', 'Apache'],
     body: 'Ubuntu server administration for a live stack: firewall rules and per-IP SSH access for a distributed team, SSL/Nginx configuration, and patch and kernel-update management planned around uptime — so maintenance doesn\'t become an outage.',
   },
 ]
@@ -57,6 +61,14 @@ export const toolkit = [
   { label: 'Observability', items: ['Prometheus', 'Grafana', 'Loki'] },
   { label: 'Integrations', items: ['Stripe', 'Firebase', 'Twilio', 'SMTP', 'REST APIs', 'Webhooks'] },
   { label: 'Tooling', items: ['Git / GitHub', 'Codemagic CI/CD', 'Bash'] },
+]
+
+export const radar = [
+  { axis: 'DevOps',    value: 92 },
+  { axis: 'Backend',   value: 82 },
+  { axis: 'Frontend',  value: 78 },
+  { axis: 'Mobile',    value: 80 },
+  { axis: 'Security',  value: 75 },
 ]
 
 export const principles = [
