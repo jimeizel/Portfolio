@@ -1,6 +1,20 @@
 import { useEffect, useRef, useState } from 'react'
 import { profile } from '../data.js'
 
+function ScrollProgress() {
+  const [pct, setPct] = useState(0)
+  useEffect(() => {
+    const update = () => {
+      const el = document.documentElement
+      const total = el.scrollHeight - el.clientHeight
+      setPct(total > 0 ? (el.scrollTop / total) * 100 : 0)
+    }
+    window.addEventListener('scroll', update, { passive: true })
+    return () => window.removeEventListener('scroll', update)
+  }, [])
+  return <div className="scroll-progress" style={{ width: `${pct}%` }} aria-hidden="true" />
+}
+
 // Wraps children and fades them in when they scroll into view.
 // Falls back to visible immediately if IntersectionObserver is unavailable,
 // and CSS disables the motion under prefers-reduced-motion.
@@ -38,6 +52,7 @@ export function Reveal({ children, className = '' }) {
 export function Nav() {
   return (
     <header className="top">
+      <ScrollProgress />
       <div className="wrap">
         <a href="#top" className="brand">
           {profile.name}

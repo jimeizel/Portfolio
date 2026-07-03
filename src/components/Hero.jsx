@@ -1,51 +1,69 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Reveal } from './common.jsx'
 import { status } from '../data.js'
 
 function useCountUp(target, delay = 400) {
   const [val, setVal] = useState(0)
-  const ran = useRef(false)
   useEffect(() => {
-    if (ran.current) return
-    ran.current = true
+    let alive = true
+    let frame
     const t = setTimeout(() => {
       const start = performance.now()
       const duration = 1100
       const tick = (now) => {
+        if (!alive) return
         const p = Math.min((now - start) / duration, 1)
         const eased = 1 - Math.pow(1 - p, 3)
         setVal(Math.round(eased * target))
-        if (p < 1) requestAnimationFrame(tick)
+        if (p < 1) frame = requestAnimationFrame(tick)
       }
-      requestAnimationFrame(tick)
+      frame = requestAnimationFrame(tick)
     }, delay)
-    return () => clearTimeout(t)
-  }, [])
+    return () => { alive = false; clearTimeout(t); cancelAnimationFrame(frame) }
+  }, [target])
   return val
+}
+
+function useTypewriter(text, delay = 600, speed = 38) {
+  const [out, setOut] = useState('')
+  useEffect(() => {
+    setOut('')
+    let i = 0
+    let id
+    const t = setTimeout(() => {
+      id = setInterval(() => {
+        i++
+        setOut(text.slice(0, i))
+        if (i >= text.length) clearInterval(id)
+      }, speed)
+    }, delay)
+    return () => { clearTimeout(t); clearInterval(id) }
+  }, [text])
+  return out
 }
 
 function LiveUptime() {
   const [days, setDays] = useState(0)
   const [done, setDone] = useState(false)
-  const ran = useRef(false)
 
   useEffect(() => {
-    if (ran.current) return
-    ran.current = true
+    let alive = true
+    let frame
     const target = Math.floor((Date.now() - new Date('2021-11-01')) / 86400000)
     const t = setTimeout(() => {
       const start = performance.now()
       const duration = 1400
       const tick = (now) => {
+        if (!alive) return
         const p = Math.min((now - start) / duration, 1)
         const eased = 1 - Math.pow(1 - p, 3)
         setDays(Math.round(eased * target))
-        if (p < 1) requestAnimationFrame(tick)
-        else setDone(true)
+        if (p < 1) frame = requestAnimationFrame(tick)
+        else if (alive) setDone(true)
       }
-      requestAnimationFrame(tick)
+      frame = requestAnimationFrame(tick)
     }, 500)
-    return () => clearTimeout(t)
+    return () => { alive = false; clearTimeout(t); cancelAnimationFrame(frame) }
   }, [])
 
   useEffect(() => {
@@ -61,13 +79,8 @@ function LiveUptime() {
 
 function StatusValue({ s }) {
   const count = useCountUp(18, 500)
-
-  if (s.k === 'uptime_days') {
-    return <span className="v"><LiveUptime /></span>
-  }
-  if (s.k === 'services_in_prod') {
-    return <span className="v">{count} monitored</span>
-  }
+  if (s.k === 'uptime_days') return <span className="v"><LiveUptime /></span>
+  if (s.k === 'services_in_prod') return <span className="v">{count} monitored</span>
   return (
     <span className="v">
       {s.ok && <span className="ok">open</span>}
@@ -103,12 +116,19 @@ function StatusPanel() {
   )
 }
 
+const EYEBROW = 'Software engineer · Mobile · DevOps · based in the Philippines'
+
 export default function Hero() {
+  const typed = useTypewriter(EYEBROW, 400, 36)
+
   return (
     <section className="hero">
       <div className="wrap hero-grid">
         <div>
-          <span className="eyebrow">Software engineer · Mobile · DevOps · based in the Philippines</span>
+          <span className="eyebrow">
+            {typed}
+            <span className="cursor" aria-hidden="true" />
+          </span>
           <h1>
             I <span className="b">build</span> web &amp; mobile products — then{' '}
             <span className="r">keep them running</span>.
