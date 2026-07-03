@@ -1,5 +1,81 @@
+import { useEffect, useRef, useState } from 'react'
 import { Reveal } from './common.jsx'
 import { status } from '../data.js'
+
+function useCountUp(target, delay = 400) {
+  const [val, setVal] = useState(0)
+  const ran = useRef(false)
+  useEffect(() => {
+    if (ran.current) return
+    ran.current = true
+    const t = setTimeout(() => {
+      const start = performance.now()
+      const duration = 1100
+      const tick = (now) => {
+        const p = Math.min((now - start) / duration, 1)
+        const eased = 1 - Math.pow(1 - p, 3)
+        setVal(Math.round(eased * target))
+        if (p < 1) requestAnimationFrame(tick)
+      }
+      requestAnimationFrame(tick)
+    }, delay)
+    return () => clearTimeout(t)
+  }, [])
+  return val
+}
+
+function LiveUptime() {
+  const [days, setDays] = useState(0)
+  const [done, setDone] = useState(false)
+  const ran = useRef(false)
+
+  useEffect(() => {
+    if (ran.current) return
+    ran.current = true
+    const target = Math.floor((Date.now() - new Date('2021-11-01')) / 86400000)
+    const t = setTimeout(() => {
+      const start = performance.now()
+      const duration = 1400
+      const tick = (now) => {
+        const p = Math.min((now - start) / duration, 1)
+        const eased = 1 - Math.pow(1 - p, 3)
+        setDays(Math.round(eased * target))
+        if (p < 1) requestAnimationFrame(tick)
+        else setDone(true)
+      }
+      requestAnimationFrame(tick)
+    }, 500)
+    return () => clearTimeout(t)
+  }, [])
+
+  useEffect(() => {
+    if (!done) return
+    const id = setInterval(() => {
+      setDays(Math.floor((Date.now() - new Date('2021-11-01')) / 86400000))
+    }, 60000)
+    return () => clearInterval(id)
+  }, [done])
+
+  return <>{days}d</>
+}
+
+function StatusValue({ s }) {
+  const count = useCountUp(18, 500)
+
+  if (s.k === 'uptime_days') {
+    return <span className="v"><LiveUptime /></span>
+  }
+  if (s.k === 'services_in_prod') {
+    return <span className="v">{count} monitored</span>
+  }
+  return (
+    <span className="v">
+      {s.ok && <span className="ok">open</span>}
+      {s.ok ? ' · ' : ''}
+      {s.v}
+    </span>
+  )
+}
 
 function StatusPanel() {
   return (
@@ -18,11 +94,7 @@ function StatusPanel() {
           {status.map((s) => (
             <div className="row" key={s.k}>
               <span className="k">{s.k}</span>
-              <span className="v">
-                {s.ok && <span className="ok">open</span>}
-                {s.ok ? ' · ' : ''}
-                {s.v}
-              </span>
+              <StatusValue s={s} />
             </div>
           ))}
         </div>

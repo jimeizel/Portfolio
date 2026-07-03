@@ -138,6 +138,31 @@ section{padding:74px 0}
 .contact .btn-ghost:hover{border-color:var(--signal-bright)}
 .contact .avail{margin-top:26px; font-family:"IBM Plex Mono",monospace; font-size:.78rem; letter-spacing:.06em; color:var(--signal-bright); display:inline-flex; align-items:center; gap:9px}
 
+/* terminal */
+.terminal-section{padding:74px 0}
+.sec-sub{color:var(--muted);margin-top:12px;max-width:42em}
+.term{background:var(--ink);border-radius:16px;overflow:hidden;box-shadow:0 24px 60px -20px rgba(20,32,28,.55);font-family:"IBM Plex Mono",monospace;cursor:text}
+.term-bar{display:flex;align-items:center;gap:8px;padding:13px 18px;background:#111915;border-bottom:1px solid var(--line-2)}
+.tdot{width:13px;height:13px;border-radius:50%;flex:none}
+.tdot.r{background:#FF5F57}.tdot.y{background:#FEBC2E}.tdot.g{background:#28C840}
+.term-title{font-size:.75rem;color:#4A5550;margin-left:8px;letter-spacing:.06em}
+.term-body{padding:18px 22px;min-height:220px;max-height:420px;overflow-y:auto}
+.term-line{font-size:.84rem;line-height:1.8;word-break:break-word}
+.tprompt{color:var(--signal-bright);white-space:nowrap}
+.tout{color:#9BAEA6}
+.tcmd{color:#D4E0DA}
+.tkey{color:var(--signal-bright)}
+.tok{color:#46C8A4}
+.terr{color:var(--pulse)}
+.tlist{color:#8B9E96}
+.tworkline{color:#D4E0DA;font-weight:600}
+.tsub{color:#5A6E66;font-size:.8rem}
+.term-input-row{display:flex;align-items:center;margin-top:4px;font-size:.84rem}
+.term-input-row input{flex:1;background:transparent;border:none;outline:none;color:#E4EAE6;font-family:"IBM Plex Mono",monospace;font-size:.84rem;caret-color:var(--signal-bright)}
+.term-hint{border-top:1px solid var(--line-2);padding:11px 20px;display:flex;gap:10px;align-items:center;font-size:.76rem;color:#4A5550}
+.term-hint button{background:transparent;border:1px solid var(--line-2);color:#8B9E96;font-family:"IBM Plex Mono",monospace;font-size:.75rem;padding:3px 11px;border-radius:5px;cursor:pointer;transition:border-color .15s,color .15s}
+.term-hint button:hover{border-color:var(--signal-bright);color:var(--signal-bright)}
+
 footer{padding:40px 0 56px; border-top:1px solid var(--line); margin-top:74px}
 footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--faint)}
 
