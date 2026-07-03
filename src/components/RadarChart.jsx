@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Reveal } from './common.jsx'
 import { radar } from '../data.js'
 
-const CX = 185, CY = 172, MAX_R = 115
+const CX = 220, CY = 195, MAX_R = 120
 
 function pt(i, n, r) {
   const a = (i * 2 * Math.PI) / n - Math.PI / 2
@@ -62,13 +62,13 @@ export default function RadarChart() {
         </Reveal>
         <Reveal>
           <div className="radar-wrap">
-            <svg viewBox="0 0 370 350" className="radar-svg" aria-label="Skill radar chart">
+            <svg viewBox="0 0 440 400" className="radar-svg" aria-label="Skill radar chart">
               {[1, 2, 3, 4].map(l => (
                 <polygon key={l} points={gridPoly(N, MAX_R * l / 4)} fill="none" stroke="var(--line)" strokeWidth="1" />
               ))}
               {radar.map((d, i) => {
                 const end = pt(i, N, MAX_R)
-                const lbl = pt(i, N, MAX_R + 30)
+                const lbl = pt(i, N, MAX_R + 34)
                 return (
                   <g key={d.axis}>
                     <line x1={CX} y1={CY} x2={end.x} y2={end.y} stroke="var(--line)" strokeWidth="1" />
