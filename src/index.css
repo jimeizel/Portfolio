@@ -8,26 +8,24 @@
   --maxw:1120px;
 }
 
-/* dark mode */
+/* dark mode — only swap page/text colors; leave --ink dark so contact/stats/panel keep their dark look */
 [data-theme="dark"]{
-  --ink:#E8EDE9; --ink-2:#C6D0CB;
   --paper:#0F1812; --paper-2:#162019;
-  --text:#D4DDD6; --muted:#7A8A80; --faint:#4A5950;
+  --text:#D4DDD6; --muted:#8A9A90; --faint:#4A5950;
   --signal:#46C8A4; --signal-bright:#5DDBB6;
   --pulse:#F06A3C;
   --line:#233029; --line-2:#2C3A33;
 }
 [data-theme="dark"] body{background:var(--paper); color:var(--text)}
-[data-theme="dark"] .top{background:rgba(15,24,18,.88)}
-[data-theme="dark"] .panel{background:linear-gradient(150deg,#071210,#0C1A14)}
+[data-theme="dark"] .top{background:rgba(15,24,18,.92)}
 [data-theme="dark"] .col{background:var(--paper-2); border-color:var(--line)}
 [data-theme="dark"] .job-card{background:var(--paper-2); border-color:var(--line)}
 [data-theme="dark"] .chip{background:var(--paper-2); border-color:var(--line); color:var(--text)}
 [data-theme="dark"] .kit{border-color:var(--line)}
 [data-theme="dark"] .kitrow{border-color:var(--line)}
 [data-theme="dark"] .story{background:var(--paper-2); border-color:var(--line)}
-[data-theme="dark"] .stats-bar{background:#050e09}
-[data-theme="dark"] .term{background:#050e09}
+[data-theme="dark"] .sec-head h2{color:var(--text)}
+[data-theme="dark"] .about-lead{color:var(--text)}
 
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
