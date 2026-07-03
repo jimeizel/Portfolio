@@ -1,6 +1,24 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Reveal } from './common.jsx'
 import { status } from '../data.js'
+
+function useMouseSpotlight(ref) {
+  const [pos, setPos] = useState({ x: 15, y: 55 })
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const update = (e) => {
+      const rect = el.getBoundingClientRect()
+      setPos({
+        x: ((e.clientX - rect.left) / rect.width) * 100,
+        y: ((e.clientY - rect.top) / rect.height) * 100,
+      })
+    }
+    el.addEventListener('mousemove', update)
+    return () => el.removeEventListener('mousemove', update)
+  }, [])
+  return pos
+}
 
 function useCountUp(target, delay = 400) {
   const [val, setVal] = useState(0)
@@ -85,9 +103,15 @@ const EYEBROW = 'Software engineer · Mobile · DevOps · based in the Philippin
 
 export default function Hero() {
   const typed = useTypewriter(EYEBROW, 400, 36)
+  const sectionRef = useRef(null)
+  const { x, y } = useMouseSpotlight(sectionRef)
 
   return (
-    <section className="hero">
+    <section
+      className="hero"
+      ref={sectionRef}
+      style={{ background: `radial-gradient(ellipse 55% 60% at ${x}% ${y}%, rgba(27,99,83,.13), transparent 65%), radial-gradient(ellipse 80% 60% at 10% 60%, rgba(27,99,83,.07), transparent 65%)` }}
+    >
       <div className="wrap hero-grid">
         <div>
           <span className="eyebrow">
