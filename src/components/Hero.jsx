@@ -42,44 +42,9 @@ function useTypewriter(text, delay = 600, speed = 38) {
   return out
 }
 
-function LiveUptime() {
-  const [days, setDays] = useState(0)
-  const [done, setDone] = useState(false)
-
-  useEffect(() => {
-    let alive = true
-    let frame
-    const target = Math.floor((Date.now() - new Date('2021-11-01')) / 86400000)
-    const t = setTimeout(() => {
-      const start = performance.now()
-      const duration = 1400
-      const tick = (now) => {
-        if (!alive) return
-        const p = Math.min((now - start) / duration, 1)
-        const eased = 1 - Math.pow(1 - p, 3)
-        setDays(Math.round(eased * target))
-        if (p < 1) frame = requestAnimationFrame(tick)
-        else if (alive) setDone(true)
-      }
-      frame = requestAnimationFrame(tick)
-    }, 500)
-    return () => { alive = false; clearTimeout(t); cancelAnimationFrame(frame) }
-  }, [])
-
-  useEffect(() => {
-    if (!done) return
-    const id = setInterval(() => {
-      setDays(Math.floor((Date.now() - new Date('2021-11-01')) / 86400000))
-    }, 60000)
-    return () => clearInterval(id)
-  }, [done])
-
-  return <>{days}d</>
-}
 
 function StatusValue({ s }) {
   const count = useCountUp(18, 500)
-  if (s.k === 'uptime_days') return <span className="v"><LiveUptime /></span>
   if (s.k === 'services_in_prod') return <span className="v">{count} monitored</span>
   return (
     <span className="v">

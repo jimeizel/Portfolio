@@ -8,7 +8,7 @@ export const profile = {
 
 export const status = [
   { k: 'availability', v: 'freelance & remote', ok: true },
-  { k: 'uptime_days', v: 'live' },
+  { k: 'platform_uptime', v: '99.9%' },
   { k: 'services_in_prod', v: '18 monitored' },
   { k: 'environments', v: 'staging·sandbox·prod' },
   { k: 'response_time', v: '< 24h' },
