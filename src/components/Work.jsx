@@ -11,22 +11,17 @@ export default function Work() {
             <h2>Things I've built and kept running.</h2>
           </div>
         </Reveal>
-        <div className="work">
+        <div className="work-grid">
           {work.map((job) => (
             <Reveal key={job.title}>
-              <article className="job">
-                <div className="meta">
-                  {job.meta.map((m, i) => (
-                    <span key={m}>
-                      {m}
-                      {i < job.meta.length - 1 ? <br /> : null}
-                    </span>
+              <article className="job-card">
+                <div className="job-tags">
+                  {job.meta.map((m) => (
+                    <span key={m} className="job-tag">{m}</span>
                   ))}
                 </div>
-                <div>
-                  <h3>{job.title}</h3>
-                  <p>{job.body}</p>
-                </div>
+                <h3>{job.title}</h3>
+                <p>{job.body}</p>
               </article>
             </Reveal>
           ))}
