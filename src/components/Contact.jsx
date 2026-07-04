@@ -35,7 +35,9 @@ export default function Contact() {
               <a href={`mailto:${profile.email}`} className="btn btn-primary">Email me →</a>
               <a href={profile.linkedin} className="btn btn-ghost" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             </div>
-            <CopyEmail email={profile.email} />
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <CopyEmail email={profile.email} />
+            </div>
             <div className="avail">
               <span className="pdot" aria-hidden="true" /> Available for freelance &amp; remote projects
             </div>
