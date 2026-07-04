@@ -60,9 +60,9 @@ export function Nav() {
           {profile.name}<span className="dot">.</span>
         </a>
         <nav className="nav" aria-label="Primary">
-          <a href="#about">about</a>
-          <a href="#work">work</a>
-          <a href="#toolkit">toolkit</a>
+          <a href="#about">About</a>
+          <a href="#work">Work</a>
+          <a href="#toolkit">Toolkit</a>
           <ThemeToggle />
           <a href="#contact" className="cta">Start a project</a>
         </nav>
