@@ -26,6 +26,10 @@
 [data-theme="dark"] .story{background:var(--paper-2); border-color:var(--line)}
 [data-theme="dark"] .sec-head h2{color:var(--text)}
 [data-theme="dark"] .about-lead{color:var(--text)}
+[data-theme="dark"] .btn-primary{background:var(--signal-bright);color:#0F1812}
+[data-theme="dark"] .btn-primary:hover{background:#fff;color:#0F1812}
+[data-theme="dark"] .btn-ghost{border-color:#3A5044;color:var(--text)}
+[data-theme="dark"] .btn-ghost:hover{border-color:var(--signal-bright);color:var(--signal-bright)}
 
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
