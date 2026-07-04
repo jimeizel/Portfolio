@@ -245,6 +245,10 @@ section{padding:74px 0}
 .contact .btn-primary:hover{background:#fff}
 .contact .btn-ghost{border-color:#3A4942; color:#E3EAE6}
 .contact .btn-ghost:hover{border-color:var(--signal-bright)}
+.copy-email{display:inline-flex;align-items:center;gap:8px;margin-top:18px;background:rgba(70,200,164,.1);border:1px solid rgba(70,200,164,.25);color:var(--signal-bright);font-family:"IBM Plex Mono",monospace;font-size:.82rem;padding:9px 16px;border-radius:8px;cursor:pointer;transition:background .15s,border-color .15s;position:relative}
+.copy-email:hover{background:rgba(70,200,164,.18);border-color:rgba(70,200,164,.5)}
+.copy-icon{opacity:.7;font-size:.9rem}
+.copy-confirm{position:absolute;top:-28px;left:50%;transform:translateX(-50%);background:var(--signal-bright);color:#0F1812;font-size:.72rem;padding:3px 10px;border-radius:999px;white-space:nowrap;pointer-events:none}
 .contact .avail{margin-top:26px; font-family:"IBM Plex Mono",monospace; font-size:.78rem; letter-spacing:.06em; color:var(--signal-bright); display:inline-flex; align-items:center; gap:9px}
 
 /* terminal */

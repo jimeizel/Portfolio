@@ -1,5 +1,23 @@
+import { useState } from 'react'
 import { Reveal } from './common.jsx'
 import { profile } from '../data.js'
+
+function CopyEmail({ email }) {
+  const [copied, setCopied] = useState(false)
+  const copy = () => {
+    navigator.clipboard.writeText(email).then(() => {
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    })
+  }
+  return (
+    <button className="copy-email" onClick={copy} title="Copy email address">
+      {email}
+      <span className="copy-icon">{copied ? '✓' : '⧉'}</span>
+      {copied && <span className="copy-confirm">Copied!</span>}
+    </button>
+  )
+}
 
 export default function Contact() {
   return (
@@ -17,6 +35,7 @@ export default function Contact() {
               <a href={`mailto:${profile.email}`} className="btn btn-primary">Email me →</a>
               <a href={profile.linkedin} className="btn btn-ghost" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             </div>
+            <CopyEmail email={profile.email} />
             <div className="avail">
               <span className="pdot" aria-hidden="true" /> Available for freelance &amp; remote projects
             </div>
