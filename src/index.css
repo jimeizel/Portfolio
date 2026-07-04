@@ -287,6 +287,77 @@ footer .wrap{display:flex; justify-content:space-between; align-items:center; fl
   .hero-grid{grid-template-columns:1fr; gap:38px}
   .br{grid-template-columns:1fr}
 }
+
+/* ── tablet ─────────────────────────── */
+@media(max-width:760px){
+  .wrap{padding:0 20px}
+  section{padding:56px 0}
+  .sec-head{margin-bottom:28px}
+}
+
+/* ── mobile ─────────────────────────── */
+@media(max-width:540px){
+  .wrap{padding:0 16px}
+  section{padding:48px 0}
+
+  /* nav */
+  .top .wrap{height:54px}
+  .nav{gap:12px}
+  .nav .cta{font-size:.76rem;padding:6px 12px}
+
+  /* hero */
+  .hero{padding:52px 0 44px}
+  .hero h1{font-size:2.15rem;margin:14px 0 0}
+  .hero .lede{font-size:.97rem;margin-top:18px}
+  .actions{margin-top:24px;gap:10px}
+  .btn{font-size:.8rem;padding:11px 18px}
+
+  /* status panel */
+  .panel{padding:18px 16px 14px}
+  .rows{font-size:.76rem}
+  .row{padding:7px 0;gap:8px}
+  .row .k,.row .v{font-size:.74rem}
+
+  /* stats */
+  .stats-bar{padding:36px 0}
+  .stat-num{font-size:2.4rem}
+  .stat-label{font-size:.66rem}
+
+  /* about */
+  .about-lead{font-size:1.35rem}
+  .about-body{font-size:.97rem}
+
+  /* build & run */
+  .col{padding:22px 18px}
+  .col h3{font-size:1.25rem}
+
+  /* work cards */
+  .job-card{padding:22px 18px 20px}
+  .job-card h3{font-size:1.2rem}
+
+  /* toolkit */
+  .kitrow{padding:16px 18px}
+  .chip{font-size:.74rem;padding:5px 11px}
+
+  /* contact */
+  .contact{border-radius:16px}
+  .contact h2{font-size:1.7rem}
+  .contact p{font-size:.94rem}
+  .actions{flex-direction:column;align-items:center}
+  .copy-email{font-size:.76rem;word-break:break-all}
+
+  /* deploy modal */
+  .deploy-modal{min-width:unset;margin:16px;padding:20px}
+  .deploy-fab{bottom:16px;left:16px;width:44px;height:44px;font-size:1.1rem}
+
+  /* achievement toast */
+  .achievement{left:16px;right:16px;bottom:16px;max-width:none}
+
+  /* footer */
+  footer{padding:28px 0 40px;margin-top:48px}
+  footer .wrap{flex-direction:column;align-items:flex-start;gap:8px}
+}
+
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important; transition:none!important; scroll-behavior:auto!important}
   .reveal{opacity:1; transform:none}
