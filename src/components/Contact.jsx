@@ -34,7 +34,6 @@ export default function Contact() {
             <div className="actions">
               <a href={`mailto:${profile.email}`} className="btn btn-primary">Email me →</a>
               <a href={profile.linkedin} className="btn btn-ghost" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-              <a href={profile.github} className="btn btn-ghost" target="_blank" rel="noopener noreferrer">GitHub</a>
               <a href={profile.resume} download="Eizel-Jimenez-CV.pdf" className="btn btn-ghost">Download CV ↓</a>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center' }}>

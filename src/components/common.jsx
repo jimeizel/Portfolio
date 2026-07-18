@@ -77,8 +77,6 @@ export function Footer() {
       <div className="wrap">
         <span>{profile.name} — Software Engineer &amp; DevOps</span>
         <span className="foot-links">
-          <a href={profile.github} target="_blank" rel="noopener noreferrer">GitHub</a>
-          {' · '}
           <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
           {' · '}
           <a href={`mailto:${profile.email}`}>Email</a>

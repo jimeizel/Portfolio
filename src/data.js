@@ -4,7 +4,6 @@ export const profile = {
   name: 'Eizel Jimenez',
   email: 'eizel.jimenez27@gmail.com',
   linkedin: 'https://www.linkedin.com/in/eizel-jimenez-40ba4621b/',
-  github: 'https://github.com/jimeizel',
   resume: '/resume.pdf',
 }
 
