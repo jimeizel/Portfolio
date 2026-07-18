@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Reveal } from './common.jsx'
-import { status } from '../data.js'
+import { status, profile } from '../data.js'
 import ParticleCanvas from './ParticleCanvas.jsx'
 
 function useCountUp(target, delay = 400) {
@@ -129,6 +129,7 @@ export default function Hero() {
           <div className="actions">
             <a href="#contact" className="btn btn-primary">Start a project →</a>
             <a href="#work" className="btn btn-ghost">See selected work</a>
+            <a href={profile.resume} download="Eizel-Jimenez-CV.pdf" className="btn btn-ghost">Download CV ↓</a>
           </div>
         </div>
         <StatusPanel />

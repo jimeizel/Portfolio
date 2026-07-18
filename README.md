@@ -1,56 +1,61 @@
 # Eizel Jimenez — Portfolio
 
-A single-page portfolio built with **React + Vite**. Hand-built components, plain CSS,
-no UI framework — it loads fast and scores high on Lighthouse, which is part of the point.
+**Live: [eizeljimenez-portfolio.vercel.app](https://eizeljimenez-portfolio.vercel.app/)**
+
+![Preview](public/og.png)
+
+A single-page portfolio built with **React 18 + Vite 5**. Hand-built components, plain CSS,
+zero UI libraries — every animation and interaction below is written from scratch.
+
+## Features
+
+- 🖥️ **Terminal boot sequence** on first load
+- ✨ **Particle network** hero background (Canvas API, mouse-reactive)
+- 🌗 **Dark mode** — persisted in localStorage, restored before first paint (no flash)
+- 📊 **Animated skill radar chart** (hand-rolled SVG, draws on scroll into view)
+- 🔍 **Stack filter** — click any tech chip to highlight matching projects
+- ⚡ **Deploy easter egg** — a FAB that runs a mock CI/CD pipeline (build → test → push → deploy → live)
+- 🏆 **Achievement toast** when you reach the bottom of the page
+- 🖱️ Cursor trail, 3D card tilt, count-up stats, typewriter effect, scroll progress bar
+- ♿ Respects `prefers-reduced-motion` — all effects degrade gracefully
+- 📱 Fully responsive down to 375px
+
+## Tech
+
+React 18 · Vite 5 · vanilla CSS (custom properties for theming) · Canvas API · SVG ·
+IntersectionObserver · requestAnimationFrame · no runtime dependencies beyond React
 
 ## Run it locally
-
-You'll need [Node.js](https://nodejs.org) 18+ installed.
 
 ```bash
 npm install      # install dependencies
 npm run dev      # start the dev server (http://localhost:5173)
+npm run build    # production build → /dist
 ```
-
-## Build for production
-
-```bash
-npm run build    # outputs static files to /dist
-npm run preview  # preview the production build locally
-```
-
-## Deploy (free options)
-
-The build output in `/dist` is plain static files — host it anywhere:
-
-- **Vercel** — import the repo at vercel.com, framework preset "Vite", deploy. Auto-deploys on every push.
-- **Cloudflare Pages** — build command `npm run build`, output directory `dist`.
-- **Netlify** — drag the `dist` folder onto app.netlify.com/drop, or connect the repo (build `npm run build`, publish `dist`).
-- **GitHub Pages** — push `/dist` to a `gh-pages` branch (or use an action).
 
 ## Structure
 
 ```
 src/
   data.js              # all page content (edit copy here)
-  index.css            # design tokens + styles
+  index.css            # design tokens + all styles
   App.jsx              # composes the sections
   components/
-    common.jsx         # Reveal (scroll animation), Nav, Footer
-    Hero.jsx           # hero + live status panel
+    common.jsx         # Nav (theme toggle, scroll progress), Footer, Reveal
+    Hero.jsx           # hero + live status panel + particle canvas
+    Stats.jsx          # animated count-up strip
     About.jsx          # intro + story
     BuildRun.jsx       # "Build & Run" two-column
-    Work.jsx           # selected work
-    Toolkit.jsx        # tech stack
-    Approach.jsx       # how I work
-    Contact.jsx        # contact / CTA
+    Work.jsx           # project cards with 3D tilt + filtering
+    Toolkit.jsx        # tech chips (click to filter work)
+    RadarChart.jsx     # animated SVG skill radar
+    Approach.jsx       # principles
+    Contact.jsx        # CTA, copy-email button
+    BootScreen.jsx     # terminal boot animation
+    DeployModal.jsx    # mock CI/CD pipeline easter egg
+    ParticleCanvas.jsx # hero particle network
+    CursorTrail.jsx    # cursor dots
+    AchievementToast.jsx
 ```
 
-To update wording, edit `src/data.js`. To change colors or type, edit the `:root`
-variables at the top of `src/index.css`.
-
-## Edit before publishing
-
-- Confirm the email and LinkedIn in `src/data.js` (`profile`).
-- Add a headshot/photo if you want (drop it in `public/` and reference it).
-- Swap or expand the work descriptions to taste.
+Deployed on [Vercel](https://vercel.com) — auto-deploys on every push to `main`.

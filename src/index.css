@@ -278,6 +278,8 @@ section{padding:74px 0}
 
 footer{padding:40px 0 56px; border-top:1px solid var(--line); margin-top:74px}
 footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--faint)}
+.foot-links a{color:var(--muted); transition:color .15s}
+.foot-links a:hover{color:var(--signal)}
 
 /* reveal */
 .reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease}
